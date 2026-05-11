@@ -2,7 +2,6 @@ package hs.dgsw.study_api.security;
 
 import hs.dgsw.study_api.domain.User;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -18,22 +17,22 @@ public class CustomUserDetails implements UserDetails {
 
     public CustomUserDetails(User user) {
         this.user = user;
-        this.authorities = List.of(new SimpleGrantedAuthority();
+        this.authorities = List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        return authorities;
     }
 
     @Override
     public @Nullable String getPassword() {
-        return "";
+        return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return "";
+        return user.getUsername();
     }
 
     @Override
