@@ -1,0 +1,21 @@
+spring:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+      defer-database-initialization: true
+
+      datasource:
+        url: jdbc:h2:mem:studydb
+        username: sa
+
+      h2:
+        console:
+          enabled: true
+
+jwt:
+  issuer: dgsw@gmail.com
+  secret_key: 3DFSFwrxcvbnm3SFDrr55gbfGEjkljkasdfghjkl;SFDFsfaiDS63FewfEv2fvffa=
+  access_expiration_minutes: 15 # 액세스 토큰 만료(분)
+  refresh_expiration_days: 14 # 리프레시 토큰 만료(일)
