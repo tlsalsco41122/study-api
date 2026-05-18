@@ -5,6 +5,7 @@ import hs.dgsw.study_api.domain.StudyMember;
 import hs.dgsw.study_api.dto.req.ApproveStudyMemberReq;
 import hs.dgsw.study_api.dto.req.CreateStudyReq;
 import hs.dgsw.study_api.dto.req.UpdateStudyReq;
+import hs.dgsw.study_api.dto.res.StudyDetailRes;
 import hs.dgsw.study_api.dto.res.StudyMemberRes;
 import hs.dgsw.study_api.dto.res.StudyRes;
 import hs.dgsw.study_api.security.CustomUserDetails;
@@ -66,9 +67,18 @@ public class StudyApiController {
     }
 
     @GetMapping("/{studyId}")
-    public ResponseEntity<StudyRes> getStudy(@PathVariable Long studyId) {
+    public ResponseEntity<StudyDetailRes> getStudy(@PathVariable Long studyId) {
         Study study = studyService.findById(studyId);
-        StudyRes studyRes = new StudyRes(study.getId(), study.getTitle(), study.getDescription(), study.getMaxMember());
+        List<StudyMemberRes> members = studyMemberService.getApprovedMembers(studyId).stream()
+                .map(member -> new StudyMemberRes(member.getId(), member.getUserId(), member.getStudyId(), member.getRole(), member.getStatus()))
+                .toList();
+        StudyDetailRes studyRes = new StudyDetailRes(
+                study.getId(),
+                study.getTitle(),
+                study.getDescription(),
+                study.getMaxMember(),
+                members
+        );
         return ResponseEntity.ok(studyRes);
     }
 
@@ -94,13 +104,5 @@ public class StudyApiController {
                                            @AuthenticationPrincipal CustomUserDetails userDetails) {
         studyMemberService.leave(studyId, userDetails.getUser().getId());
         return ResponseEntity.ok().build();
-    }
-
-    @GetMapping("/{studyId}/members")
-    public ResponseEntity<List<StudyMemberRes>> getApprovedMembers(@PathVariable Long studyId) {
-        List<StudyMemberRes> members = studyMemberService.getApprovedMembers(studyId).stream()
-                .map(member -> new StudyMemberRes(member.getId(), member.getUserId(), member.getStudyId(), member.getRole(), member.getStatus()))
-                .toList();
-        return ResponseEntity.ok(members);
     }
 }
