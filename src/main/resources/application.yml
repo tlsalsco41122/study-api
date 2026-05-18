@@ -1,19 +1,22 @@
 spring:
+  datasource:
+    url: jdbc:h2:mem:studydb
+    username: sa
+    driver-class-name: org.h2.Driver
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
   jpa:
     show-sql: true
+
     properties:
       hibernate:
         format_sql: true
-      defer-database-initialization: true
 
-      datasource:
-        url: jdbc:h2:mem:studydb
-        username: sa
-
-      h2:
-        console:
-          enabled: true
-          path: /h2-console
+    defer-database-initialization: true
 
 jwt:
   issuer: dgsw@gmail.com
