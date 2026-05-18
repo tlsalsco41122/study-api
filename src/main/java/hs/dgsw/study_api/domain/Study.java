@@ -35,4 +35,10 @@ public class Study {
         this.description = description;
         this.maxMember = maxMember;
     }
+
+    public void update(String title, String description, int maxMember) {
+        this.title = title;
+        this.description = description;
+        this.maxMember = maxMember;
+    }
 }

@@ -16,6 +16,6 @@ spring:
 
 jwt:
   issuer: dgsw@gmail.com
-  secret_key: 3DFSFwrxcvbnm3SFDrr55gbfGEjkljkasdfghjkl;SFDFsfaiDS63FewfEv2fvffa=
+  secret_key: c2VjcmV0c2VjcmV0c2VjcmV0c2VjcmV0c2VjcmV0c2VjcmV0c2VjcmV0c2VjcmV0
   access_expiration_minutes: 15 # 액세스 토큰 만료(분)
   refresh_expiration_days: 14 # 리프레시 토큰 만료(일)

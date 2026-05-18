@@ -19,7 +19,7 @@ public class TokenServiceImpl implements TokenService {
     @Override
     public String createNewAccessToken(String refreshToken) throws Exception {
         if(!tokenProvider.validToken(refreshToken)){
-            throw new IllegalAccessException("Unexpected token");
+            throw new IllegalAccessException("유효하지 않은 토큰입니다.");
         }
 
         Long userId = refreshTokenService.findByRefreshToken(refreshToken).getUserId();

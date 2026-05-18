@@ -32,10 +32,19 @@ public class StudyMember {
     @Column(name = "role", nullable = false)
     private RoleType role;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    private StatusType status;
+
     @Builder
-    public StudyMember(Long userId, Long studyId, RoleType role) {
+    public StudyMember(Long userId, Long studyId, RoleType role, StatusType status) {
         this.userId = userId;
         this.studyId = studyId;
         this.role = role;
+        this.status = status;
+    }
+
+    public void updateStatus(StatusType status) {
+        this.status = status;
     }
 }
