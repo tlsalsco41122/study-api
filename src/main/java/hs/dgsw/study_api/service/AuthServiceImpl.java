@@ -29,15 +29,14 @@ public class AuthServiceImpl implements AuthService {
     private final RefreshTokenService refreshTokenService;
 
     @Override
-    public UserRes signUp(SignUpReq req) {
+    public User signUp(SignUpReq req) {
         User user = User.builder()
                 .username(req.getUsername())
                 .password(passwordEncoder.encode(req.getPassword()))
                 .build();
 
-        userRepository.save(user);
+        return userRepository.save(user);
 
-        return new UserRes(user.getId(), user.getUsername());
     }
 
     @Override
