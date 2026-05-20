@@ -82,6 +82,7 @@ public class StudyApiController {
         return ResponseEntity.ok(studyRes);
     }
 
+    // 스터디 가입 신청
     @PostMapping("/{studyId}/apply")
     public ResponseEntity<StudyMemberRes> applyStudy(@PathVariable Long studyId,
                                                      @AuthenticationPrincipal CustomUserDetails userDetails) {
@@ -90,6 +91,7 @@ public class StudyApiController {
         return ResponseEntity.ok(res);
     }
 
+    // 스터디 가입 승인/거절
     @PostMapping("/{studyId}/approve")
     public ResponseEntity<StudyMemberRes> approveStudyMember(@PathVariable Long studyId,
                                                              @RequestBody ApproveStudyMemberReq req,
@@ -99,6 +101,7 @@ public class StudyApiController {
         return ResponseEntity.ok(res);
     }
 
+    // 스터디 탈퇴
     @PostMapping("/{studyId}/leave")
     public ResponseEntity<Void> leaveStudy(@PathVariable Long studyId,
                                            @AuthenticationPrincipal CustomUserDetails userDetails) {
