@@ -8,6 +8,7 @@ import hs.dgsw.study_api.repository.StudyMemberRepository;
 import hs.dgsw.study_api.repository.StudyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class StudyMemberServiceImpl implements StudyMemberService {
     private final StudyRepository studyRepository;
 
     @Override
+    @Transactional
     public StudyMember apply(Long studyId, Long userId) {
         if (!studyRepository.existsById(studyId)) {
             throw new IllegalArgumentException("스터디를 찾을 수 없습니다.");
@@ -37,6 +39,7 @@ public class StudyMemberServiceImpl implements StudyMemberService {
     }
 
     @Override
+    @Transactional
     public StudyMember approve(Long studyId, Long ownerId, Long userId, boolean approved) {
         if (!isOwner(studyId, ownerId)) {
             throw new IllegalArgumentException("권한이 없습니다.");
@@ -61,6 +64,7 @@ public class StudyMemberServiceImpl implements StudyMemberService {
     }
 
     @Override
+    @Transactional
     public void leave(Long studyId, Long userId) {
         StudyMember member = studyMemberRepository.findByUserIdAndStudyId(userId, studyId)
                 .orElseThrow(() -> new IllegalArgumentException("스터디 멤버가 아닙니다."));
@@ -72,16 +76,19 @@ public class StudyMemberServiceImpl implements StudyMemberService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<StudyMember> getApprovedMembers(Long studyId) {
         return studyMemberRepository.findAllByStudyIdAndStatus(studyId, StatusType.APPROVED);
     }
 
     @Override
+    @Transactional
     public void deleteByStudyId(Long studyId) {
         studyMemberRepository.deleteAllByStudyId(studyId);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public boolean isOwner(Long studyId, Long userId) {
         return studyMemberRepository.existsByUserIdAndStudyIdAndRoleAndStatus(userId, studyId, RoleType.OWNER, StatusType.APPROVED);
     }

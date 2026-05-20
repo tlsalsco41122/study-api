@@ -70,12 +70,14 @@ public class StudyServiceImpl implements StudyService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Study findById(Long studyId) {
         return studyRepository.findById(studyId)
                 .orElseThrow(() -> new IllegalArgumentException("스터디를 찾을 수 없습니다."));
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Study> findAll() {
         return studyRepository.findAll();
     }

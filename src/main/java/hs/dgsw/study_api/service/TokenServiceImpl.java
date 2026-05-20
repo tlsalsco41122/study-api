@@ -5,6 +5,7 @@ import hs.dgsw.study_api.config.jwt.TokenProvider;
 import hs.dgsw.study_api.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Duration;
 
@@ -17,6 +18,7 @@ public class TokenServiceImpl implements TokenService {
     private final JwtProperties jwtProperties;
 
     @Override
+    @Transactional(readOnly = true)
     public String createNewAccessToken(String refreshToken) throws Exception {
         if(!tokenProvider.validToken(refreshToken)){
             throw new IllegalAccessException("유효하지 않은 토큰입니다.");
