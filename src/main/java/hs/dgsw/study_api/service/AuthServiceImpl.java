@@ -6,7 +6,6 @@ import hs.dgsw.study_api.domain.User;
 import hs.dgsw.study_api.dto.req.SignInReq;
 import hs.dgsw.study_api.dto.req.SignUpReq;
 import hs.dgsw.study_api.dto.res.SignInRes;
-import hs.dgsw.study_api.dto.res.UserRes;
 import hs.dgsw.study_api.repository.UserRepository;
 import hs.dgsw.study_api.security.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
