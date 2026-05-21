@@ -8,5 +8,4 @@ import hs.dgsw.study_api.dto.res.SignInRes;
 public interface AuthService {
     User signUp(SignUpReq req);
     SignInRes signIn(SignInReq req);
-
 }
