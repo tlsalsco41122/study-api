@@ -17,16 +17,16 @@ docker compose up --build
 ```
 
 ## API 요약
-- Auth: `POST /api/auth/signUp`, `POST /api/auth/signIn`
-- Token: `POST /api/token`
-- Studies
-  - `GET /api/study`
-  - `GET /api/study/{studyId}`
-  - `POST /api/study/create`
-  - `PUT /api/study/{studyId}`
-  - `DELETE /api/study/{studyId}`
-- Study Members
-  - `GET /api/study/{studyId}/members`
-  - `POST /api/study/{studyId}/apply`
-  - `POST /api/study/{studyId}/approve`
-  - `POST /api/study/{studyId}/leave`
+- Auth: `POST /api/auth/signUp`, `POST /api/auth/signIn` -  회원가입, 로그인
+- Token: `POST /api/token` - 토큰 재발급
+- Study
+  - `GET /api/study` - 스터디 목록 조회
+  - `GET /api/study/{studyId}` - 스터디 상세 조회
+  - `POST /api/study/create` - 스터디 생성
+  - `PUT /api/study/{studyId}` - 스터디 수정 (스터디장만 가능)
+  - `DELETE /api/study/{studyId}` - 스터디 삭제 (스터디장만 가능)
+- Study Member
+  - `GET /api/study/{studyId}/members` - 스터디 멤버 목록 조회
+  - `POST /api/study/{studyId}/apply` - 스터디 가입 신청
+  - `POST /api/study/{studyId}/approve` - 스터디 가입 승인 (스터디장만 가능)
+  - `POST /api/study/{studyId}/leave` - 스터디 탈퇴 (스터디장 제외)
