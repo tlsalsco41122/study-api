@@ -20,13 +20,13 @@ docker compose up --build
 - Auth: `POST /api/auth/signUp`, `POST /api/auth/signIn`
 - Token: `POST /api/token`
 - Studies
-  - `GET /api/studies`
-  - `GET /api/studies/{studyId}`
-  - `POST /api/studies`
-  - `PUT /api/studies/{studyId}`
-  - `DELETE /api/studies/{studyId}`
+  - `GET /api/study`
+  - `GET /api/study/{studyId}`
+  - `POST /api/study/create`
+  - `PUT /api/study/{studyId}`
+  - `DELETE /api/study/{studyId}`
 - Study Members
-  - `POST /api/studies/{studyId}/members` (apply)
-  - `PUT /api/studies/{studyId}/members/{userId}` (approve/reject)
-  - `DELETE /api/studies/{studyId}/members/me` (leave)
-
+  - `GET /api/study/{studyId}/members`
+  - `POST /api/study/{studyId}/apply`
+  - `POST /api/study/{studyId}/approve`
+  - `POST /api/study/{studyId}/leave`

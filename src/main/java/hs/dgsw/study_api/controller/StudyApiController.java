@@ -108,4 +108,13 @@ public class StudyApiController {
         studyMemberService.leave(studyId, userDetails.getUser().getId());
         return ResponseEntity.ok().build();
     }
+
+    // 스터디 멤버 전체 조회
+    @GetMapping("/{studyId}/members")
+    public ResponseEntity<List<StudyMemberRes>> getAllStudyMembers(@PathVariable Long studyId) {
+        List<StudyMemberRes> members = studyMemberService.getAllMembers(studyId).stream()
+                .map(member -> new StudyMemberRes(member.getId(), member.getUserId(), member.getStudyId(), member.getRole(), member.getStatus()))
+                .toList();
+        return ResponseEntity.ok(members);
+    }
 }

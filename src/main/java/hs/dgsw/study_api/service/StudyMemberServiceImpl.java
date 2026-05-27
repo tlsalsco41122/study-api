@@ -82,6 +82,12 @@ public class StudyMemberServiceImpl implements StudyMemberService {
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public List<StudyMember> getAllMembers(Long studyId) {
+        return studyMemberRepository.findAllByStudyId(studyId);
+    }
+
+    @Override
     @Transactional
     public void deleteByStudyId(Long studyId) {
         studyMemberRepository.deleteAllByStudyId(studyId);
